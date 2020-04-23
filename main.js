@@ -1,58 +1,91 @@
-const makeRunOn= function (str){
-for(let i=0; i < str.length-1; i++)
-
-{
-  
-  if (str[i] = '.'){
-
-  str[i] = ','
- 
-
-}
-return str 
-}
-}
-
-const stringOut= function(str){
-  for(let i=0; i < str.length; i++)
-{ if (str[i]!== ' '){
-
-
-str[i]+= ' '
-
+const makeRunOn = function (str) {
+  let result = '';
+  for(let i = 0; i < str.length; i++) {
+    if (str[i] === '.') {
+      result += ","
+    } else {
+      result += str[i]
+    }
+  }
+  if (result.endsWith(',')) {
+    result = result.slice(0, result.length-1);
+    result += '.'; 
+  }
+  return result  
 }
 
-return str 
-}
+const stringOut = function(str) {
+  let result = '';
+  for(let i = 0; i < str.length; i++) { 
+    if (str[i] !== ' ') {
+      result += str[i] + ' '
+    } else if (str[i] === ' ') {
+    } else {
+      result += str[i]
+    }
+  }
+  if (result.endsWith(' ')) {
+    result = result.slice(0, result.length-1);
+  }
+  return result;
 }
 const nightOwls = function (array){
-let copyOfArray= []
-
-copyOfArray= array.slice()
-let resultArray=[]
-for (let i=0;i< copyOfArray.length; i++)
+  let result =[]
+for (let i=0;i< array.length; i++)
 {
-if (copyOfArray[i].asleep = false && copyOfArray[i].localTime >= 100 && copyOfArray[i].localTime <=400){
+if (array[i].asleep === false && array[i].localTime >= 100 && array[i].localTime <=400){
 
-resultArray.push([i])
+
+result.push(array[i])
 }
 
 
 }
-
-return resultArray
+return result
 }
-const totalScore = function (){}
+const totalScore = function (array) {
+  let result = 0;
+  for(let i = 0; i < array.length; i++) {
+    if (array[i].multiplier === 1) {
+      result += array[i].score;
+    } else if (array[i].multiplier === undefined) {
+      result += array[i].score;
+    } else {
+      result += array[i].score * array[i].multiplier
+    }
+  }
+  return result;
+}
+const getToBed = function (array){
+let result = []
+result = array.slice()
+  for(let i = 0; i < result.length; i++){
 
+    if(result[i].asleep === true || result[i].asleep === false && result[i].localTime >= 100 && result[i].localTime <=400){
+      result[i].asleep = true
+    }
+  }
+
+return result
+}
+
+const findIndices= function(array, callback){
+
+ return array.filter(callback)
+}
 
 const Faqtory = function(){
 
   return {
 
     questions: [],
-    addQuestion: function (str){
-const question = {str}
-   this.questions.push(question)
+    addQuestion: function (text){
+const question = { text: text,
+  id: this.questions[this.questions.length-1],
+  answered: false 
+
+}
+  this.questions.push(question)
     }
   }
   
