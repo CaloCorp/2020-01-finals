@@ -80,12 +80,19 @@ const Faqtory = function(){
 
     questions: [],
     addQuestion: function (text){
-const question = { text: text,
-  id: this.questions[this.questions.length-1],
-  answered: false 
+      const question = { text: text,
+        id: this.questions.length,
+        answered: false 
 
 }
   this.questions.push(question)
+    },
+    answerQuestion: function(id, text){
+      if (this.questions[id].answered === true){
+
+      
+      }
+      else{this.questions[id].answer = text}
     }
   }
   
